@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACCTP - Gestão Social e Logística de Beneficiários</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos de Acessibilidade */
+        body.high-contrast {
+            background-color: #000000 !important;
+            color: #FFFF00 !important;
+        }
+        body.high-contrast .card {
+            background-color: #111111 !important;
+            border: 2px solid #FFFF00 !important;
+            color: #FFFF00 !important;
+        }
+        body.high-contrast input, body.high-contrast select {
+            background-color: #000000 !important;
+            color: #FFFFFF !important;
+            border: 2px solid #FFFF00 !important;
+        }
+        body.high-contrast button.btn-primary {
+            background-color: #FFFF00 !important;
+            color: #000000 !important;
+            font-weight: bold !important;
+        }
+        body.high-contrast th, body.high-contrast td {
+            border-color: #FFFF00 !important;
+            color: #FFFF00 !important;
+        }
+        body.large-text {
+            font-size: 1.25rem !important;
+        }
+        body.large-text h1 { font-size: 2.2rem !important; }
+        body.large-text h2 { font-size: 1.75rem !important; }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 transition-all duration-200 font-sans">
+
+    <!-- Barra de Acessibilidade (ODS 10 e 11) -->
+    <header class="bg-blue-900 text-white py-3 px-6 shadow-md" role="banner">
+        <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-4">
+            <div>
+                <h1 class="text-xl font-bold tracking-wide">ACCTP • Assistência Social & Logística</h1>
+                <p class="text-xs text-blue-200">MVP de Gestão Comunitária de Beneficiários</p>
+            </div>
+            
+            <!-- Controles de Acessibilidade -->
+            <nav aria-label="Recursos de Acessibilidade" class="flex items-center gap-2">
+                <button onclick="toggleContrast()" class="bg-yellow-400 text-slate-900 px-3 py-1.5 rounded text-sm font-semibold hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-white">
+                    🌓 Alto Contraste
+                </button>
+                <button onclick="toggleFontSize()" class="bg-white text-blue-900 px-3 py-1.5 rounded text-sm font-semibold hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                    🔍 Aumentar Fonte (A+)
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="max-w-6xl mx-auto py-8 px-6 space-y-8" role="main">
+
+        <!-- Navegação entre Abas (Operação Geral 1 e 2) -->
+        <div class="flex gap-4 border-b border-slate-300 pb-3">
+            <button onclick="showTab('lista')" id="tab-lista" class="btn-primary bg-blue-700 text-white px-5 py-2 rounded-lg font-medium shadow">
+                📋 Beneficiários Cadastrados
+            </button>
+            <button onclick="showTab('cadastro')" id="tab-cadastro" class="bg-slate-200 text-slate-700 px-5 py-2 rounded-lg font-medium hover:bg-slate-300">
+                ➕ Novo Cadastro Social
+            </button>
+        </div>
+
+        <!-- TELA 1: Listagem de Beneficiários -->
+        <section id="sec-lista" class="card bg-white p-6 rounded-xl shadow-md">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold">Base Ativa de Famílias Atendidas</h2>
+                <span class="text-sm bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">Status: Operacional</span>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse" aria-label="Tabela de Beneficiários">
+                    <thead>
+                        <tr class="border-b-2 border-slate-200 text-slate-600 text-sm">
+                            <th class="py-3 px-4">ID</th>
+                            <th class="py-3 px-4">Nome Completo</th>
+                            <th class="py-3 px-4">CPF (Mascarado)</th>
+                            <th class="py-3 px-4">Bairro / Região</th>
+                            <th class="py-3 px-4">Benefício Logístico</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-corpo" class="divide-y divide-slate-200 text-sm">
+                        <tr>
+                            <td class="py-3 px-4 font-semibold">#001</td>
+                            <td class="py-3 px-4">Maria Helena da Silva</td>
+                            <td class="py-3 px-4">***.458.912-**</td>
+                            <td class="py-3 px-4">Perus - Zona Norte</td>
+                            <td class="py-3 px-4"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-semibold">Cesta Básica + Kit Higiene</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-semibold">#002</td>
+                            <td class="py-3 px-4">José Carlos Oliveira</td>
+                            <td class="py-3 px-4">***.892.104-**</td>
+                            <td class="py-3 px-4">Jaraguá - Setor B</td>
+                            <td class="py-3 px-4"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-semibold">Cesta Básica</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-semibold">#003</td>
+                            <td class="py-3 px-4">Ana Paula Santos</td>
+                            <td class="py-3 px-4">***.113.776-**</td>
+                            <td class="py-3 px-4">Taipas - Comunidade Sul</td>
+                            <td class="py-3 px-4"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-semibold">Apoio Nutricional Infantil</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- TELA 2: Formulário de Cadastro -->
+        <section id="sec-cadastro" class="card bg-white p-6 rounded-xl shadow-md hidden">
+            <h2 class="text-lg font-bold mb-4">Cadastrar Novo Beneficiário</h2>
+            <form id="form-beneficiario" onsubmit="adicionarBeneficiario(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="nome" class="block text-sm font-medium mb-1">Nome Completo *</label>
+                    <input type="text" id="nome" required placeholder="Ex: João da Silva" class="w-full border border-slate-300 rounded-lg p-2.5">
+                </div>
+                <div>
+                    <label for="cpf" class="block text-sm font-medium mb-1">CPF *</label>
+                    <input type="text" id="cpf" required placeholder="000.000.000-00" class="w-full border border-slate-300 rounded-lg p-2.5">
+                </div>
+                <div>
+                    <label for="bairro" class="block text-sm font-medium mb-1">Bairro / Comunidade *</label>
+                    <input type="text" id="bairro" required placeholder="Ex: Perus" class="w-full border border-slate-300 rounded-lg p-2.5">
+                </div>
+                <div>
+                    <label for="beneficio" class="block text-sm font-medium mb-1">Tipo de Assistência *</label>
+                    <select id="beneficio" class="w-full border border-slate-300 rounded-lg p-2.5">
+                        <option value="Cesta Básica">Cesta Básica</option>
+                        <option value="Cesta Básica + Kit Higiene">Cesta Básica + Kit Higiene</option>
+                        <option value="Apoio Nutricional Infantil">Apoio Nutricional Infantil</option>
+                    </select>
+                </div>
+                <div class="md:col-span-2 mt-2">
+                    <button type="submit" class="btn-primary bg-green-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-green-700">
+                        ✅ Salvar Cadastro no Sistema
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <script>
+        function showTab(tab) {
+            document.getElementById('sec-lista').classList.toggle('hidden', tab !== 'lista');
+            document.getElementById('sec-cadastro').classList.toggle('hidden', tab !== 'cadastro');
+            
+            document.getElementById('tab-lista').className = tab === 'lista' 
+                ? 'btn-primary bg-blue-700 text-white px-5 py-2 rounded-lg font-medium shadow' 
+                : 'bg-slate-200 text-slate-700 px-5 py-2 rounded-lg font-medium hover:bg-slate-300';
+            
+            document.getElementById('tab-cadastro').className = tab === 'cadastro' 
+                ? 'btn-primary bg-blue-700 text-white px-5 py-2 rounded-lg font-medium shadow' 
+                : 'bg-slate-200 text-slate-700 px-5 py-2 rounded-lg font-medium hover:bg-slate-300';
+        }
+
+        function toggleContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+
+        function toggleFontSize() {
+            document.body.classList.toggle('large-text');
+        }
+
+        function adicionarBeneficiario(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const cpf = document.getElementById('cpf').value;
+            const bairro = document.getElementById('bairro').value;
+            const beneficio = document.getElementById('beneficio').value;
+
+            const tbody = document.getElementById('tabela-corpo');
+            const id = `#00${tbody.children.length + 1}`;
+            const cpfMask = cpf.length >= 11 ? `***.${cpf.slice(4, 7)}.${cpf.slice(8, 11)}-**` : cpf;
+
+            const row = `<tr>
+                <td class="py-3 px-4 font-semibold">${id}</td>
+                <td class="py-3 px-4">${nome}</td>
+                <td class="py-3 px-4">${cpfMask}</td>
+                <td class="py-3 px-4">${bairro}</td>
+                <td class="py-3 px-4"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-semibold">${beneficio}</span></td>
+            </tr>`;
+
+            tbody.insertAdjacentHTML('beforeend', row);
+            e.target.reset();
+            showTab('lista');
+        }
+    </script>
+</body>
+</html>
