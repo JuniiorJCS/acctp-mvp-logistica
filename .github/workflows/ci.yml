@@ -27,4 +27,4 @@ jobs:
 
       - name: Executar testes com pytest e cobertura
         run: |
-          PYTHONPATH=. pytest --cov=app --cov-report=term-missing -v
+          PYTHONPATH=. pytest tests/ --cov=app --cov-report=term-missing -v
