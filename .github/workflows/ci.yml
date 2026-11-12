@@ -26,7 +26,5 @@ jobs:
           pip install pytest pytest-cov httpx fastapi
 
       - name: Executar testes com pytest e cobertura
-        env:
-          PYTHONPATH: .
         run: |
-          pytest --cov=app --cov-report=term-missing -v
+          PYTHONPATH=. pytest --cov=app --cov-report=term-missing -v
