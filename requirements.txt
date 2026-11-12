@@ -1,12 +1,7 @@
 fastapi==0.115.0
-<<<<<<< HEAD
-uvicorn>=0.30.0
-sqlalchemy
-pydantic
-# teste
-=======
 uvicorn==0.30.6
+sqlalchemy
 pydantic==2.9.2
 pytest==8.3.3
 httpx==0.27.2
->>>>>>> 376711819fbfb84e37b199df56d768f75ff3c90b
+python-multipart
